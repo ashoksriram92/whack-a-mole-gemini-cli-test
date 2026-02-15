@@ -9,13 +9,15 @@ exports.handler = async (event) => {
     try {
         const { name, score } = JSON.parse(event.body);
 
-        if (!name || typeof score !== 'number') {
+        const MAX_PLAUSIBLE_SCORE = 90; // Calculated based on game mechanics (60s / 0.7s per mole ~ 85.7 moles, rounded up for buffer)
+
+        if (!name || typeof score !== 'number' || score < 0 || score > MAX_PLAUSIBLE_SCORE) {
             return {
                 statusCode: 400,
                 headers: {
-                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Origin": "https://ashoksriram92.github.io/whack-a-mole-gemini-cli-test/",
                 },
-                body: JSON.stringify({ message: "Invalid name or score" }),
+                body: JSON.stringify({ message: `Invalid name or score. Score must be between 0 and ${MAX_PLAUSIBLE_SCORE}` }),
             };
         }
 
@@ -34,7 +36,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 201,
             headers: {
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://ashoksriram92.github.io/whack-a-mole-gemini-cli-test/",
             },
             body: JSON.stringify({ message: "Score added successfully" }),
         };
@@ -43,7 +45,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             headers: {
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://ashoksriram92.github.io/whack-a-mole-gemini-cli-test/",
             },
             body: JSON.stringify({ message: "Error adding score" }),
         };

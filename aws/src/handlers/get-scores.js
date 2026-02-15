@@ -18,7 +18,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 200,
             headers: {
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://ashoksriram92.github.io/whack-a-mole-gemini-cli-test/",
             },
             body: JSON.stringify(top5),
         };
@@ -27,7 +27,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             headers: {
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://ashoksriram92.github.io/whack-a-mole-gemini-cli-test/",
             },
             body: JSON.stringify({ message: "Error retrieving scores" }),
         };
