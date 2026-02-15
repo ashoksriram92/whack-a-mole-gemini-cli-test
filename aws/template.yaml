@@ -8,7 +8,6 @@ Description: >
 Globals:
   Function:
     Timeout: 3
-    BuildMethod: makefile
   Api:
     Cors:
       AllowMethods: "'GET,POST,OPTIONS'"
@@ -42,6 +41,8 @@ Resources:
           Properties:
             Path: /leaderboard
             Method: get
+    Metadata:
+      BuildMethod: makefile
 
   AddScoreFunction:
     Type: AWS::Serverless::Function
@@ -58,6 +59,8 @@ Resources:
           Properties:
             Path: /leaderboard
             Method: post
+    Metadata:
+      BuildMethod: makefile
 
 Outputs:
   ApiUrl:
