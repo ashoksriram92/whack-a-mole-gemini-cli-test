@@ -7,8 +7,6 @@ This is a classic Whack-a-Mole game with a twist: a universal leaderboard that p
 The application uses a serverless architecture on AWS to handle the leaderboard functionality.
 
 | Client (Browser) | API Gateway | Lambda | DynamoDB |
-| :---: | :---: | :---: | :---: |
-| <img src="https://www.freeiconspng.com/uploads/user-icon-png-person-user-profile-icon-20.png" width="64"> | <img src="https://cdn.jsdelivr.net/gh/weibeld/aws-icons-svg@main/q1-2022/integration/Amazon-API-Gateway.svg" width="64"> | <img src="https://cdn.jsdelivr.net/gh/weibeld/aws-icons-svg@main/q1-2022/compute/AWS-Lambda.svg" width="64"> | <img src="https://cdn.jsdelivr.net/gh/weibeld/aws-icons-svg@main/q1-2022/database/Amazon-DynamoDB.svg" width="64"> |
 | User plays the game | Receives API requests | Executes business logic | Stores and retrieves scores |
 | ⬇️ | ⬇️ | ⬇️ | ⬇️ |
 | `POST /leaderboard` (Save Score) | Forwards request to Lambda | `add-score.js` | `PutItem` |
