@@ -8,7 +8,7 @@ The application uses a serverless architecture on AWS to handle the leaderboard 
 
 | Client (Browser) | API Gateway | Lambda | DynamoDB |
 | :---: | :---: | :---: | :---: |
-| <img src="https://www.freeiconspng.com/uploads/user-icon-png-person-user-profile-icon-20.png" width="64"> | <img src="https://a0.awsstatic.com/libra-css/images/services/png/Arch_Amazon-API-Gateway_64.png" width="64"> | <img src="https://a0.awsstatic.com/libra-css/images/services/png/Arch_AWS-Lambda_64.png" width="64"> | <img src="https://a0.awsstatic.com/libra-css/images/services/png/Arch_Amazon-DynamoDB_64.png" width="64"> |
+| <img src="https://www.freeiconspng.com/uploads/user-icon-png-person-user-profile-icon-20.png" width="64"> | <img src="https://cdn.jsdelivr.net/npm/aws-icons@latest/icons/architecture-service/Amazon-API-Gateway.svg" width="64"> | <img src="https://cdn.jsdelivr.net/npm/aws-icons@latest/icons/architecture-service/AWS-Lambda.svg" width="64"> | <img src="https://cdn.jsdelivr.net/npm/aws-icons@latest/icons/architecture-service/Amazon-DynamoDB.svg" width="64"> |
 | User plays the game | Receives API requests | Executes business logic | Stores and retrieves scores |
 | ⬇️ | ⬇️ | ⬇️ | ⬇️ |
 | `POST /leaderboard` (Save Score) | Forwards request to Lambda | `add-score.js` | `PutItem` |
