@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  whack-a-mole-leaderboard
+
+  Sample SAM Template for whack-a-mole-leaderboard
+
+Globals:
+  Function:
+    Timeout: 3
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+      AllowOrigin: "'*'"
+
+Resources:
+  LeaderboardTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: WhackAMoleLeaderboard
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+
+  GetScoresFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handlers/
+      Handler: get-scores.handler
+      Runtime: nodejs18.x
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref LeaderboardTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /leaderboard
+            Method: get
+
+  AddScoreFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handlers/
+      Handler: add-score.handler
+      Runtime: nodejs18.x
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeaderboardTable
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /leaderboard
+            Method: post
+
+Outputs:
+  ApiUrl:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/leaderboard"

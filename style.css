@@ -71,3 +71,39 @@ h1 {
     cursor: pointer;
     margin-bottom: 20px;
 }
+
+#player-setup {
+    margin-bottom: 20px;
+}
+
+#player-name {
+    padding: 5px;
+    font-size: 1em;
+}
+
+#submit-name {
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.leaderboard-container {
+    margin: 20px auto;
+    width: 80%;
+    max-width: 400px;
+    border: 2px solid #7a6344;
+    padding: 10px;
+    background-color: #a08464;
+}
+
+#leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+#leaderboard-list li {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #534431;
+}

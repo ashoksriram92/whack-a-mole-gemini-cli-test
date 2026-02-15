@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const scoreDisplay = document.getElementById('score');
     const timeLeftDisplay = document.getElementById('time-left');
     const startButton = document.getElementById('start-button');
+    const playerSetup = document.getElementById('player-setup');
+    const playerNameInput = document.getElementById('player-name');
+    const submitNameButton = document.getElementById('submit-name');
+    const gameContainer = document.querySelector('.game-container');
+    const leaderboardList = document.getElementById('leaderboard-list');
+
+    const apiUrl = 'https://sg5om8nni4.execute-api.us-east-1.amazonaws.com/Prod/leaderboard';
 
     let score = 0;
     let timeLeft = 60;
@@ -11,11 +18,50 @@ document.addEventListener('DOMContentLoaded', () => {
     let timerId = null;
     let moleTimerId = null;
     let gameInProgress = false;
+    let currentPlayer = '';
+
+    async function updateLeaderboard() {
+        try {
+            const response = await fetch(apiUrl);
+            const scores = await response.json();
+            leaderboardList.innerHTML = scores
+                .map(score => `<li>${score.name}: ${score.score}</li>`)
+                .join('');
+        } catch (error) {
+            console.error('Error updating leaderboard:', error);
+            leaderboardList.innerHTML = '<li>Could not load leaderboard. Is the server running?</li>';
+        }
+    }
+
+    async function saveScore(score, name) {
+        try {
+            await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, score }),
+            });
+            updateLeaderboard();
+        } catch (error) {
+            console.error('Error saving score:', error);
+        }
+    }
+
+    submitNameButton.addEventListener('click', () => {
+        const playerName = playerNameInput.value.trim();
+        if (playerName) {
+            currentPlayer = playerName;
+            playerSetup.style.display = 'none';
+            gameContainer.style.display = 'block';
+        } else {
+            alert('Please enter your name.');
+        }
+    });
 
     function randomSquare() {
         squares.forEach(square => {
             square.classList.remove('mole', 'up');
-            // Add a simple mole placeholder for now
             const moleElement = square.querySelector('.mole');
             if (moleElement) {
                 square.removeChild(moleElement);
@@ -24,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let randomPosition = squares[Math.floor(Math.random() * 9)];
         
-        // Use a div for the mole for now
         const moleElement = document.createElement('div');
         moleElement.classList.add('mole', 'up');
         randomPosition.appendChild(moleElement);
@@ -38,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 score++;
                 scoreDisplay.textContent = score;
                 square.classList.remove('up');
-                hitPosition = null; // Prevent multiple hits on the same mole
+                hitPosition = null; 
             }
         });
     });
@@ -56,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(moleTimerId);
             gameInProgress = false;
             alert('Game Over! Your final score is ' + score);
+            saveScore(score, currentPlayer);
             startButton.disabled = false;
         }
     }
@@ -76,4 +122,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startButton.addEventListener('click', startGame);
 
+    updateLeaderboard();
 });

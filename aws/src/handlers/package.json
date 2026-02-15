@@ -1,0 +1,8 @@
+{
+  "name": "whack-a-mole-handlers",
+  "version": "1.0.0",
+  "description": "Lambda handlers for whack-a-mole",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}

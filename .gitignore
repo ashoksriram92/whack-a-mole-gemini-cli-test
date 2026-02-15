@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+.npm-cache/
+
+# Local database
+leaderboard.json
+
+# AWS SAM build artifacts
+aws/.aws-sam/
