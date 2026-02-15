@@ -8,6 +8,7 @@ Description: >
 Globals:
   Function:
     Timeout: 3
+    BuildMethod: makefile
   Api:
     Cors:
       AllowMethods: "'GET,POST,OPTIONS'"
