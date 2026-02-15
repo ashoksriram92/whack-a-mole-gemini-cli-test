@@ -2,6 +2,8 @@ body {
     background-color: #c0d9af;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 10px;
 }
 
 h1 {
@@ -12,11 +14,14 @@ h1 {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
+    font-size: 1.2em;
 }
 
 .grid {
-    width: 606px;
-    height: 606px;
+    width: 90vw;
+    height: 90vw;
+    max-width: 606px;
+    max-height: 606px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
@@ -25,8 +30,9 @@ h1 {
 }
 
 .square {
-    width: 200px;
-    height: 200px;
+    width: 33.333%;
+    height: 33.333%;
+    box-sizing: border-box; /* Include border in the width/height */
     border: 1px solid #7a6344;
     background-color: #a08464;
     position: relative;
@@ -37,32 +43,32 @@ h1 {
     content: '';
     display: block;
     background: #534431;
-    width: 100px;
-    height: 100px;
+    width: 60%;
+    height: 60%;
     border-radius: 50%;
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .mole {
-    background-image: url('mole.png'); /* We will add this later */
     background-color: #be9767;
     background-size: cover;
     background-position: center;
-    /* Simple mole representation with CSS */
-    width: 100px;
-    height: 100px;
+    width: 70%;
+    height: 70%;
     position: absolute;
-    top: 100px; /* Start hidden */
-    left: 50px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
     border-radius: 50%;
     border: 5px solid #534431;
     transition: top 0.2s ease-in-out;
 }
 
 .mole.up {
-    top: 25px; /* Move up to be visible */
+    top: 15%;
 }
 
 #start-button {
@@ -89,7 +95,7 @@ h1 {
 
 .leaderboard-container {
     margin: 20px auto;
-    width: 80%;
+    width: 90%;
     max-width: 400px;
     border: 2px solid #7a6344;
     padding: 10px;
@@ -106,4 +112,19 @@ h1 {
     margin-bottom: 5px;
     font-size: 1.1em;
     color: #534431;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .game-info {
+        font-size: 1em;
+    }
 }
