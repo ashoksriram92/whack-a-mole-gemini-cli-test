@@ -24,9 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(apiUrl);
             const scores = await response.json();
-            leaderboardList.innerHTML = scores
-                .map(score => `<li>${score.name}: ${score.score}</li>`)
-                .join('');
+            
+            // Clear old leaderboard
+            leaderboardList.innerHTML = '';
+
+            // Create and append new list items safely
+            scores.forEach(score => {
+                const li = document.createElement('li');
+                li.textContent = `${score.name}: ${score.score}`;
+                leaderboardList.appendChild(li);
+            });
         } catch (error) {
             console.error('Error updating leaderboard:', error);
             leaderboardList.innerHTML = '<li>Could not load leaderboard. Is the server running?</li>';
