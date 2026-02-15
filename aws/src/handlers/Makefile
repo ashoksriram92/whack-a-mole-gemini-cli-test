@@ -1,11 +1,11 @@
 build-GetScoresFunction:
-	npm install
-	npm test
+	rm -rf node_modules
+	npm install --cache .npm-cache # Install runtime & test deps
+	npm test                     # Run tests
 	cp get-scores.js "$(ARTIFACTS_DIR)"
-	cp -r node_modules "$(ARTIFACTS_DIR)"
 
 build-AddScoreFunction:
-	npm install
-	npm test
+	rm -rf node_modules
+	npm install --cache .npm-cache # Install runtime & test deps
+	npm test                     # Run tests
 	cp add-score.js "$(ARTIFACTS_DIR)"
-	cp -r node_modules "$(ARTIFACTS_DIR)"
