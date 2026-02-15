@@ -4,5 +4,14 @@
   "description": "Lambda handlers for whack-a-mole",
   "dependencies": {
     "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.509.0",
+    "@aws-sdk/util-dynamodb": "^3.509.0",
+    "aws-sdk-client-mock": "^3.0.0",
+    "jest": "^29.0.0"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
