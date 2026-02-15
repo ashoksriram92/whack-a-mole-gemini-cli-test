@@ -77,14 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
         hitPosition = randomPosition.id;
     }
 
+    function handleHit(square) {
+        if (gameInProgress && square.id === hitPosition) {
+            score++;
+            scoreDisplay.textContent = score;
+            square.classList.remove('up');
+            hitPosition = null; 
+        }
+    }
+
     squares.forEach(square => {
-        square.addEventListener('mousedown', () => {
-            if (gameInProgress && square.id === hitPosition) {
-                score++;
-                scoreDisplay.textContent = score;
-                square.classList.remove('up');
-                hitPosition = null; 
-            }
+        square.addEventListener('mousedown', () => handleHit(square));
+        square.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevent ghost clicks
+            handleHit(square)
         });
     });
 
