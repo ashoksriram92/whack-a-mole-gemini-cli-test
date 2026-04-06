@@ -101,6 +101,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    document.addEventListener('keydown', (e) => {
+        if (!gameInProgress) return;
+
+        let squareId = null;
+        if (e.code.startsWith('Digit')) {
+            squareId = e.code.charAt(5);
+        } else if (e.code.startsWith('Numpad')) {
+            squareId = e.code.charAt(6);
+        }
+
+        if (squareId && squareId >= '1' && squareId <= '9') {
+            const square = document.getElementById(squareId);
+            if (square) {
+                handleHit(square);
+            }
+        }
+    });
+
     function moveMole() {
         moleTimerId = setInterval(randomSquare, 700);
     }
