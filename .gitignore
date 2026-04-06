@@ -5,5 +5,9 @@ node_modules/
 # Local database
 leaderboard.json
 
+# Playwright
+e2e/test-results/
+e2e/playwright-report/
+
 # AWS SAM build artifacts
 aws/.aws-sam/
