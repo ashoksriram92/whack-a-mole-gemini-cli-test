@@ -114,6 +114,87 @@ h1 {
     color: #534431;
 }
 
+#contrast-toggle {
+    display: block;
+    margin: 0 auto 15px auto;
+    padding: 8px 16px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid #7a6344;
+    border-radius: 5px;
+    background-color: #a08464;
+    color: #534431;
+}
+
+.high-contrast {
+    background-color: #1a1a1a;
+    color: #FFFFFF;
+}
+
+.high-contrast h1 {
+    color: #FFFFFF;
+}
+
+.high-contrast h2 {
+    color: #FFFFFF;
+}
+
+.high-contrast .grid {
+    background-color: #333333;
+    border-color: #555555;
+}
+
+.high-contrast .square {
+    background-color: #333333;
+    border-color: #555555;
+}
+
+.high-contrast .square::after {
+    background: #000000;
+}
+
+.high-contrast .mole {
+    background-color: #FFD700;
+    border-color: #FFD700;
+}
+
+.high-contrast .leaderboard-container {
+    background-color: #333333;
+    border-color: #555555;
+}
+
+.high-contrast #leaderboard-list li {
+    color: #FFFFFF;
+}
+
+.high-contrast #start-button {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+.high-contrast #submit-name {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+.high-contrast #player-name {
+    background-color: #333333;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+}
+
+.high-contrast #contrast-toggle {
+    background-color: #333333;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.high-contrast label {
+    color: #FFFFFF;
+}
+
 /* Media query for smaller screens */
 @media screen and (max-width: 600px) {
     body {
