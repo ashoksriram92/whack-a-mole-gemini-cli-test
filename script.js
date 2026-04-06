@@ -9,6 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitNameButton = document.getElementById('submit-name');
     const gameContainer = document.querySelector('.game-container');
     const leaderboardList = document.getElementById('leaderboard-list');
+    const contrastToggle = document.getElementById('contrast-toggle');
+
+    if (localStorage.getItem('highContrast') === 'true') {
+        document.body.classList.add('high-contrast');
+    }
+
+    contrastToggle.addEventListener('click', () => {
+        document.body.classList.toggle('high-contrast');
+        const isHighContrast = document.body.classList.contains('high-contrast');
+        localStorage.setItem('highContrast', isHighContrast);
+    });
 
     const apiUrl = 'https://sg5om8nni4.execute-api.us-east-1.amazonaws.com/Prod/leaderboard';
 
