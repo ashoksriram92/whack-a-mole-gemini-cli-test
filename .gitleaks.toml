@@ -1,0 +1,8 @@
+title = "Gitleaks configuration for whack-a-mole"
+
+[allowlist]
+  description = "Global allowlist"
+  paths = [
+    '''package-lock\.json$''',
+    '''\.gitleaks\.toml$''',
+  ]

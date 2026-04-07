@@ -11,3 +11,6 @@ e2e/playwright-report/
 
 # AWS SAM build artifacts
 aws/.aws-sam/
+
+# Gitleaks
+gitleaks-report.*

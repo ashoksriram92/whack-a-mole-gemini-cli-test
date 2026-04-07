@@ -1,0 +1,7 @@
+# .gitleaksignore - Known false positive fingerprints for gitleaks
+#
+# To add a fingerprint:
+#   1. Run: gitleaks detect --report-format json --report-path report.json
+#   2. Find the "Fingerprint" field in the JSON output for the false positive
+#   3. Add the fingerprint string (one per line) below
+#
