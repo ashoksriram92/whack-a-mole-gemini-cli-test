@@ -1,0 +1,11 @@
+{
+  "name": "whack-a-mole-security-tests",
+  "version": "1.0.0",
+  "description": "Tests for secret scanning configuration",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
