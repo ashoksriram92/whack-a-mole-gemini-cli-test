@@ -100,7 +100,25 @@ document.addEventListener('DOMContentLoaded', () => {
             score++;
             scoreDisplay.textContent = score;
             square.classList.remove('up');
-            hitPosition = null; 
+            hitPosition = null;
+
+            // Score popup animation
+            const popup = document.createElement('div');
+            popup.classList.add('score-popup');
+            popup.textContent = '+1';
+            const grid = document.querySelector('.grid');
+            popup.style.left = (square.offsetLeft + square.offsetWidth / 2) + 'px';
+            popup.style.top = square.offsetTop + 'px';
+            grid.appendChild(popup);
+            popup.addEventListener('animationend', () => {
+                popup.remove();
+            }, { once: true });
+
+            // Square shake animation
+            square.classList.add('hit');
+            square.addEventListener('animationend', () => {
+                square.classList.remove('hit');
+            }, { once: true });
         }
     }
 
