@@ -1,6 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { mockLeaderboardAPI } = require('./helpers');
 
+const COUNTDOWN_DURATION = 4500; // ~4s countdown + buffer
+
 test.describe('Keyboard Input', () => {
   test.beforeEach(async ({ page }) => {
     await mockLeaderboardAPI(page);
@@ -13,9 +15,9 @@ test.describe('Keyboard Input', () => {
   test('pressing digit key for mole square increments score', async ({ page }) => {
     await page.click('#start-button');
 
-    // Wait for a mole to appear
+    // Wait for a mole to appear (after countdown)
     const mole = page.locator('.mole.up');
-    await mole.waitFor({ state: 'visible', timeout: 3000 });
+    await mole.waitFor({ state: 'visible', timeout: COUNTDOWN_DURATION + 3000 });
 
     // Find which square the mole is in
     const squareId = await page.locator('.square:has(.mole.up)').getAttribute('id');

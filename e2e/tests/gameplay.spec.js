@@ -1,6 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { mockLeaderboardAPI } = require('./helpers');
 
+const COUNTDOWN_DURATION = 4500; // ~4s countdown + buffer
+
 test.describe('Gameplay', () => {
   test.beforeEach(async ({ page }) => {
     await mockLeaderboardAPI(page);
@@ -19,21 +21,23 @@ test.describe('Gameplay', () => {
 
   test('score starts at 0 and timer at 60', async ({ page }) => {
     await page.click('#start-button');
+    // Wait for countdown to finish
+    await page.waitForTimeout(COUNTDOWN_DURATION);
     await expect(page.locator('#score')).toHaveText('0');
     await expect(page.locator('#time-left')).toHaveText('60');
   });
 
   test('moles appear after starting game', async ({ page }) => {
     await page.click('#start-button');
-    // Moles appear every 700ms, wait for one
-    await expect(page.locator('.mole.up')).toBeVisible({ timeout: 3000 });
+    // Wait for countdown + mole spawn (700ms cycle)
+    await expect(page.locator('.mole.up')).toBeVisible({ timeout: COUNTDOWN_DURATION + 3000 });
   });
 
   test('clicking a mole increments the score', async ({ page }) => {
     await page.click('#start-button');
-    // Wait for a mole to appear
+    // Wait for a mole to appear (after countdown)
     const mole = page.locator('.mole.up');
-    await mole.waitFor({ state: 'visible', timeout: 3000 });
+    await mole.waitFor({ state: 'visible', timeout: COUNTDOWN_DURATION + 3000 });
     // Get parent square and click it (mousedown handler is on .square)
     const parentSquare = page.locator('.square:has(.mole.up)');
     await parentSquare.click();
@@ -44,7 +48,8 @@ test.describe('Gameplay', () => {
 
   test('timer counts down', async ({ page }) => {
     await page.click('#start-button');
-    await page.waitForTimeout(2500);
+    // Wait for countdown to finish + some gameplay time
+    await page.waitForTimeout(COUNTDOWN_DURATION + 2500);
     const timeText = await page.locator('#time-left').textContent();
     const timeVal = parseInt(timeText);
     expect(timeVal).toBeLessThan(60);
@@ -53,12 +58,18 @@ test.describe('Gameplay', () => {
 
   test('start button stays disabled during gameplay', async ({ page }) => {
     await page.click('#start-button');
+    // Check during countdown
     await page.waitForTimeout(1000);
+    await expect(page.locator('#start-button')).toBeDisabled();
+    // Check after countdown during gameplay
+    await page.waitForTimeout(COUNTDOWN_DURATION);
     await expect(page.locator('#start-button')).toBeDisabled();
   });
 
   test('multiple mole hits increment score correctly', async ({ page }) => {
     await page.click('#start-button');
+    // Wait for countdown to finish
+    await page.waitForTimeout(COUNTDOWN_DURATION);
     let hits = 0;
     // Try to hit 3 moles
     for (let i = 0; i < 3; i++) {
