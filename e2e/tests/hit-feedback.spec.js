@@ -1,6 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { mockLeaderboardAPI } = require('./helpers');
 
+const COUNTDOWN_DURATION = 4500; // ~4s countdown + buffer
+
 test.describe('Hit Feedback Animations', () => {
   test.beforeEach(async ({ page }) => {
     await mockLeaderboardAPI(page);
@@ -10,7 +12,7 @@ test.describe('Hit Feedback Animations', () => {
     await page.click('#submit-name');
     await page.click('#start-button');
     // Wait for a mole to appear
-    await page.locator('.mole.up').waitFor({ state: 'visible', timeout: 3000 });
+    await page.locator('.mole.up').waitFor({ state: 'visible', timeout: COUNTDOWN_DURATION + 3000 });
   });
 
   test('clicking a mole adds .hit class to the square', async ({ page }) => {
