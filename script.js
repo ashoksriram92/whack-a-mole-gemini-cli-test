@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.querySelector('.game-container');
     const leaderboardList = document.getElementById('leaderboard-list');
     const contrastToggle = document.getElementById('contrast-toggle');
+    const countdownOverlay = document.getElementById('countdown-overlay');
+    const countdownText = document.getElementById('countdown-text');
 
     if (localStorage.getItem('highContrast') === 'true') {
         document.body.classList.add('high-contrast');
@@ -100,7 +102,25 @@ document.addEventListener('DOMContentLoaded', () => {
             score++;
             scoreDisplay.textContent = score;
             square.classList.remove('up');
-            hitPosition = null; 
+            hitPosition = null;
+
+            // Score popup animation
+            const popup = document.createElement('div');
+            popup.classList.add('score-popup');
+            popup.textContent = '+1';
+            const grid = document.querySelector('.grid');
+            popup.style.left = (square.offsetLeft + square.offsetWidth / 2) + 'px';
+            popup.style.top = square.offsetTop + 'px';
+            grid.appendChild(popup);
+            popup.addEventListener('animationend', () => {
+                popup.remove();
+            }, { once: true });
+
+            // Square shake animation
+            square.classList.add('hit');
+            square.addEventListener('animationend', () => {
+                square.classList.remove('hit');
+            }, { once: true });
         }
     }
 
@@ -148,16 +168,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function startGame() {
+    const delay = ms => new Promise(r => setTimeout(r, ms));
+
+    async function runCountdown() {
+        countdownOverlay.classList.add('active');
+        const steps = ['3', '2', '1', 'Go!'];
+        for (const step of steps) {
+            countdownText.textContent = step;
+            countdownText.classList.add('countdown-animate');
+            await delay(1000);
+            countdownText.classList.remove('countdown-animate');
+        }
+        countdownOverlay.classList.remove('active');
+    }
+
+    async function startGame() {
         if (gameInProgress) return;
 
         score = 0;
         timeLeft = 60;
         scoreDisplay.textContent = score;
         timeLeftDisplay.textContent = timeLeft;
-        gameInProgress = true;
         startButton.disabled = true;
 
+        await runCountdown();
+
+        gameInProgress = true;
         timerId = setInterval(countDown, 1000);
         moveMole();
     }
