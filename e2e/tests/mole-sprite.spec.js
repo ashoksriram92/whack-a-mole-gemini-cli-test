@@ -1,6 +1,8 @@
 const { test, expect } = require('@playwright/test');
 const { mockLeaderboardAPI } = require('./helpers');
 
+const COUNTDOWN_DURATION = 4500; // ~4s countdown + buffer
+
 test.describe('Mole Sprite', () => {
   test.beforeEach(async ({ page }) => {
     await mockLeaderboardAPI(page);
@@ -10,7 +12,7 @@ test.describe('Mole Sprite', () => {
     await page.click('#submit-name');
     await page.click('#start-button');
     // Wait for a mole to appear
-    await page.locator('.mole.up').waitFor({ state: 'visible', timeout: 3000 });
+    await page.locator('.mole.up').waitFor({ state: 'visible', timeout: COUNTDOWN_DURATION + 3000 });
   });
 
   test('mole element has a background-image CSS property set', async ({ page }) => {
@@ -29,7 +31,7 @@ test.describe('Mole Sprite', () => {
     await expect(page.locator('body')).toHaveClass(/high-contrast/);
     // Wait for a mole to appear in high-contrast mode
     const mole = page.locator('.mole.up');
-    await mole.waitFor({ state: 'visible', timeout: 3000 });
+    await mole.waitFor({ state: 'visible', timeout: COUNTDOWN_DURATION + 3000 });
     await expect(mole).toBeVisible();
     const bgImage = await mole.evaluate((el) => getComputedStyle(el).backgroundImage);
     expect(bgImage).not.toBe('none');
