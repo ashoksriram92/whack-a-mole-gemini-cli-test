@@ -54,6 +54,7 @@ h1 {
 
 .mole {
     background-color: #be9767;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='55' rx='45' ry='42' fill='%23be9767'/%3E%3Cellipse cx='50' cy='55' rx='45' ry='42' fill='none' stroke='%23534431' stroke-width='3'/%3E%3Cellipse cx='25' cy='30' rx='14' ry='12' fill='%23a07850'/%3E%3Cellipse cx='25' cy='30' rx='14' ry='12' fill='none' stroke='%23534431' stroke-width='2'/%3E%3Cellipse cx='75' cy='30' rx='14' ry='12' fill='%23a07850'/%3E%3Cellipse cx='75' cy='30' rx='14' ry='12' fill='none' stroke='%23534431' stroke-width='2'/%3E%3Cellipse cx='25' cy='30' rx='8' ry='7' fill='%23c9a87a'/%3E%3Cellipse cx='75' cy='30' rx='8' ry='7' fill='%23c9a87a'/%3E%3Ccircle cx='36' cy='48' r='5' fill='%23534431'/%3E%3Ccircle cx='64' cy='48' r='5' fill='%23534431'/%3E%3Ccircle cx='37.5' cy='46.5' r='1.8' fill='%23FFFFFF'/%3E%3Ccircle cx='65.5' cy='46.5' r='1.8' fill='%23FFFFFF'/%3E%3Cellipse cx='50' cy='62' rx='8' ry='5.5' fill='%23b07060'/%3E%3Cellipse cx='50' cy='62' rx='8' ry='5.5' fill='none' stroke='%23534431' stroke-width='1.5'/%3E%3Cline x1='30' y1='58' x2='12' y2='54' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='30' y1='62' x2='10' y2='62' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='30' y1='66' x2='12' y2='70' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='58' x2='88' y2='54' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='62' x2='90' y2='62' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='66' x2='88' y2='70' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M44 72 Q50 80 56 72' fill='none' stroke='%23534431' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
     background-size: cover;
     background-position: center;
     width: 70%;
@@ -62,8 +63,8 @@ h1 {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 50%;
-    border: 5px solid #534431;
+    border-radius: 40%;
+    border: none;
     transition: top 0.2s ease-in-out;
 }
 
@@ -155,6 +156,7 @@ h1 {
 
 .high-contrast .mole {
     background-color: #FFD700;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='55' rx='45' ry='42' fill='%23FFD700'/%3E%3Cellipse cx='50' cy='55' rx='45' ry='42' fill='none' stroke='%23FFFFFF' stroke-width='3'/%3E%3Cellipse cx='25' cy='30' rx='14' ry='12' fill='%23DAA520'/%3E%3Cellipse cx='25' cy='30' rx='14' ry='12' fill='none' stroke='%23FFFFFF' stroke-width='2'/%3E%3Cellipse cx='75' cy='30' rx='14' ry='12' fill='%23DAA520'/%3E%3Cellipse cx='75' cy='30' rx='14' ry='12' fill='none' stroke='%23FFFFFF' stroke-width='2'/%3E%3Cellipse cx='25' cy='30' rx='8' ry='7' fill='%23FFE44D'/%3E%3Cellipse cx='75' cy='30' rx='8' ry='7' fill='%23FFE44D'/%3E%3Ccircle cx='36' cy='48' r='5' fill='%23000000'/%3E%3Ccircle cx='64' cy='48' r='5' fill='%23000000'/%3E%3Ccircle cx='37.5' cy='46.5' r='1.8' fill='%23FFFFFF'/%3E%3Ccircle cx='65.5' cy='46.5' r='1.8' fill='%23FFFFFF'/%3E%3Cellipse cx='50' cy='62' rx='8' ry='5.5' fill='%23FF6347'/%3E%3Cellipse cx='50' cy='62' rx='8' ry='5.5' fill='none' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3Cline x1='30' y1='58' x2='12' y2='54' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='30' y1='62' x2='10' y2='62' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='30' y1='66' x2='12' y2='70' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='58' x2='88' y2='54' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='62' x2='90' y2='62' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='70' y1='66' x2='88' y2='70' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M44 72 Q50 80 56 72' fill='none' stroke='%23FFFFFF' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
     border-color: #FFD700;
 }
 
